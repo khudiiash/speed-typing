@@ -1,0 +1,75 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root.dark-mode {
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1a1a1a;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --bg-color: #1a1a1a;
+  --card-bg: #2a2a2a;
+  --card-border: #333;
+  --text-bg: #1e1e1e;
+  --text-border: #333;
+  --input-bg: #1a1a1a;
+  --input-border: #444;
+  --border-color: #333;
+  --text-secondary: #aaa;
+  --keyboard-bg: #2a2a2a;
+  --header-bg: #1a1a1a;
+  --progress-bg: #333;
+  --btn-secondary-bg: #444;
+  --accent-color: #4ecdc4;
+  --timer-color: #4ecdc4;
+}
+
+:root.light-mode {
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+  --text-color: #213547;
+  --bg-color: #ffffff;
+  --card-bg: #f5f5f5;
+  --card-border: #ddd;
+  --text-bg: #fafafa;
+  --text-border: #ddd;
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+  --border-color: #ddd;
+  --text-secondary: #666;
+  --keyboard-bg: #f0f0f0;
+  --header-bg: #f8f8f8;
+  --progress-bg: #e0e0e0;
+  --btn-secondary-bg: #e0e0e0;
+  --accent-color: #4ecdc4;
+  --timer-color: #4ecdc4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
