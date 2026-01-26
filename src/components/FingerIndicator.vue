@@ -62,6 +62,13 @@ function isShiftNeeded(expectedChar) {
   return false;
 }
 
+
+function isUkrainianChar(char) {
+  if (!char) return false;
+  const ukrainianChars = 'абвгґдеєжзиіїйклмнопрстуфхцчшщьюя';
+  return ukrainianChars.includes(char.toLowerCase());
+}
+
 const fingerInfo = computed(() => {
   if (!props.expectedKey) return null;
   
@@ -74,8 +81,28 @@ const fingerInfo = computed(() => {
     };
   }
   
-  const map = props.language === 'uk' ? fingerMapUk : fingerMap;
-  const finger = map[props.expectedKey.toLowerCase()] || null;
+  
+  const charLower = props.expectedKey.toLowerCase();
+  let finger = null;
+  
+  
+  if (isUkrainianChar(props.expectedKey)) {
+    finger = fingerMapUk[charLower] || null;
+  } else {
+    finger = fingerMap[charLower] || null;
+  }
+  
+  
+  if (!finger) {
+    const fallbackMap = isUkrainianChar(props.expectedKey) ? fingerMap : fingerMapUk;
+    finger = fallbackMap[charLower] || null;
+  }
+  
+  
+  if (!finger) {
+    const map = props.language === 'uk' ? fingerMapUk : fingerMap;
+    finger = map[charLower] || null;
+  }
   
   if (!finger) return null;
   

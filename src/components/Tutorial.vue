@@ -199,7 +199,6 @@ function close() {
   display: flex;
   flex-direction: column;
   border: 2px solid var(--card-border, #333);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .tutorial-header {
@@ -229,7 +228,6 @@ function close() {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background 0.2s;
 }
 
 .close-btn:hover {

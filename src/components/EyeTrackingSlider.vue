@@ -143,9 +143,9 @@ const pinPosition = computed(() => {
   background: var(--accent-color, #4ecdc4);
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 2px 12px rgba(78, 205, 196, 0.6), 0 0 8px rgba(78, 205, 196, 0.4);
   z-index: 20;
-  transition: top 0.15s ease-out;
+  transition: top 0.1s linear;
+  will-change: top;
   display: flex;
   align-items: center;
   justify-content: center;

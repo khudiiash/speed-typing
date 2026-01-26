@@ -161,6 +161,10 @@ const layoutMismatchCount = ref(0);
 const currentCombo = ref(0);
 const maxCombo = ref(0);
 const keyboardLayoutMap = ref(null);
+let scrollTimeout = null;
+let lastScrollTime = 0;
+let isScrolling = false;
+const SCROLL_THROTTLE_MS = 150;
 
 const words = computed(() => {
   if (!props.targetText) return [];
@@ -257,6 +261,9 @@ const startLayoutCheckInterval = () => {
 onUnmounted(() => {
   if (layoutCheckInterval) {
     clearInterval(layoutCheckInterval);
+  }
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
   }
   if (focusHandler) {
     window.removeEventListener('focus', focusHandler);
@@ -401,9 +408,19 @@ function handleInput(event) {
     emit('update:expectedKey', expectedChar);
   }
   
-  nextTick(() => {
-    scrollToCurrent();
-  });
+  // Throttle scroll to avoid jumps and performance issues
+  const now = Date.now();
+  if (now - lastScrollTime > SCROLL_THROTTLE_MS && !isScrolling) {
+    lastScrollTime = now;
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+      requestAnimationFrame(() => {
+        scrollToCurrent();
+      });
+    }, 50);
+  }
 }
 
 function checkCapsLock(event) {
@@ -671,15 +688,51 @@ function handleKeyUp(event) {
 }
 
 function scrollToCurrent() {
-  if (!textDisplayRef.value) return;
+  if (!textDisplayRef.value || isScrolling) return;
   
   const currentChar = textDisplayRef.value.querySelector('.char.current');
-  if (currentChar) {
-    currentChar.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'center',
+  if (!currentChar) return;
+  
+  const container = textDisplayRef.value;
+  const containerRect = container.getBoundingClientRect();
+  const charRect = currentChar.getBoundingClientRect();
+  
+  // Check if character is already visible in viewport (with margin)
+  const margin = 80; // Larger margin to prevent frequent scrolling
+  const isVisible = 
+    charRect.top >= containerRect.top - margin &&
+    charRect.bottom <= containerRect.bottom + margin;
+  
+  // Only scroll if character is not visible
+  if (!isVisible) {
+    isScrolling = true;
+    
+    // Use instant scroll during active typing to prevent jumps
+    const isActivelyTyping = props.isActive && !props.isPaused;
+    const scrollBehavior = isActivelyTyping ? 'auto' : 'smooth';
+    
+    // Calculate target scroll position to center the character
+    const charOffsetTop = currentChar.offsetTop;
+    const containerHeight = container.clientHeight;
+    const charHeight = charRect.height;
+    const targetScrollTop = charOffsetTop - (containerHeight / 2) + (charHeight / 2);
+    
+    container.scrollTo({
+      top: Math.max(0, targetScrollTop),
+      behavior: scrollBehavior
     });
+    
+    // Reset scrolling flag
+    if (scrollBehavior === 'smooth') {
+      setTimeout(() => {
+        isScrolling = false;
+      }, 500);
+    } else {
+      // For instant scroll, reset immediately
+      requestAnimationFrame(() => {
+        isScrolling = false;
+      });
+    }
   }
 }
 
@@ -808,7 +861,6 @@ defineExpose({
 
 .char {
   display: inline;
-  transition: background-color 0.1s ease, color 0.1s ease;
   box-sizing: border-box;
   position: relative;
 }
@@ -943,7 +995,6 @@ defineExpose({
   color: var(--text-secondary, #aaa);
   text-decoration: none;
   opacity: 0.6;
-  transition: opacity 0.2s, color 0.2s;
   cursor: pointer;
   position: relative;
   z-index: 100;
@@ -1014,7 +1065,6 @@ defineExpose({
   background-size: 300px 100%;
   background-position: 0 0;
   background-repeat: repeat-x;
-  transition: width 0.2s ease;
   border-radius: 3px;
   position: relative;
   box-shadow: 

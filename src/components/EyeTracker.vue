@@ -790,12 +790,11 @@ function dismissWarning() {
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   padding: 10px 20px;
   border-radius: 8px;
   z-index: 9999;
   font-family: monospace;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -867,7 +866,6 @@ function dismissWarning() {
   padding: 2rem;
   text-align: center;
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
   position: relative;
   z-index: 1;
   color: #fff !important;
@@ -979,7 +977,6 @@ function dismissWarning() {
   padding: 2rem;
   text-align: center;
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
   position: relative;
   z-index: 1;
   color: #fff !important;

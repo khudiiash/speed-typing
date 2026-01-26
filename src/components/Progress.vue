@@ -170,7 +170,6 @@ h2 {
   background: var(--card-bg, #2a2a2a);
   color: var(--text-color, #fff);
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .filter-btn:hover {
@@ -204,7 +203,6 @@ h2 {
   background: linear-gradient(to top, #4ecdc4, #45b7d1);
   border-radius: 4px 4px 0 0;
   min-height: 4px;
-  transition: all 0.3s ease;
   cursor: pointer;
 }
 
