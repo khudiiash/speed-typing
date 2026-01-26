@@ -408,7 +408,7 @@ function handleInput(event) {
     emit('update:expectedKey', expectedChar);
   }
   
-  // Throttle scroll to avoid jumps and performance issues
+  
   const now = Date.now();
   if (now - lastScrollTime > SCROLL_THROTTLE_MS && !isScrolling) {
     lastScrollTime = now;
@@ -697,21 +697,21 @@ function scrollToCurrent() {
   const containerRect = container.getBoundingClientRect();
   const charRect = currentChar.getBoundingClientRect();
   
-  // Check if character is already visible in viewport (with margin)
-  const margin = 80; // Larger margin to prevent frequent scrolling
+  
+  const margin = 80; 
   const isVisible = 
     charRect.top >= containerRect.top - margin &&
     charRect.bottom <= containerRect.bottom + margin;
   
-  // Only scroll if character is not visible
+  
   if (!isVisible) {
     isScrolling = true;
     
-    // Use instant scroll during active typing to prevent jumps
+    
     const isActivelyTyping = props.isActive && !props.isPaused;
     const scrollBehavior = isActivelyTyping ? 'auto' : 'smooth';
     
-    // Calculate target scroll position to center the character
+    
     const charOffsetTop = currentChar.offsetTop;
     const containerHeight = container.clientHeight;
     const charHeight = charRect.height;
@@ -722,13 +722,13 @@ function scrollToCurrent() {
       behavior: scrollBehavior
     });
     
-    // Reset scrolling flag
+    
     if (scrollBehavior === 'smooth') {
       setTimeout(() => {
         isScrolling = false;
       }, 500);
     } else {
-      // For instant scroll, reset immediately
+      
       requestAnimationFrame(() => {
         isScrolling = false;
       });
