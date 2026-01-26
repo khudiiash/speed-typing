@@ -82,26 +82,26 @@
             <div class="info-item">
               <span class="info-icon">👁️</span>
               <div class="info-content">
-                <strong>{{ t.initializingEyeTracking }}</strong>
-                <p>{{ t.initializingEyeTrackingMessage }}</p>
+                <strong>{{ t.eyeTracking }}</strong>
+                <p>{{ t.eyeTrackingDescription }}</p>
               </div>
             </div>
             <div class="info-item">
-              <span class="info-icon">🎯</span>
+              <span class="info-icon">⚙️</span>
               <div class="info-content">
-                <strong>{{ t.calibrateScreen }}</strong>
-                <p>{{ t.calibrateScreenMessage }}</p>
+                <strong>{{ t.settings }}</strong>
+                <p>{{ t.eyeTrackingCalibrationInstructions || 'To calibrate eye tracking, go to Settings and adjust the Screen Y and Keyboard Y values manually. Look at the screen and adjust Screen Y, then look at your keyboard and adjust Keyboard Y.' }}</p>
               </div>
             </div>
             <div class="info-item">
-              <span class="info-icon">⌨️</span>
+              <span class="info-icon">⚠️</span>
               <div class="info-content">
-                <strong>{{ t.calibrateKeyboard }}</strong>
-                <p>{{ t.calibrateKeyboardMessage }}</p>
+                <strong>{{ t.lookingAtKeyboard }}</strong>
+                <p>{{ t.lookingAtKeyboardMessage }}</p>
               </div>
             </div>
             <div class="info-note">
-              <p>{{ t.lookingAtKeyboardMessage }}</p>
+              <p>{{ t.eyeTrackingCalibrationNote || 'Calibration is optional. You can adjust the values in Settings at any time to improve accuracy.' }}</p>
             </div>
           </div>
         </div>
