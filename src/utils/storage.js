@@ -142,6 +142,13 @@ export const settingsStorage = {
   setShowFingerIndicator(show) {
     localStorage.setItem('typingTrainer_showFingerIndicator', show.toString());
   },
+  getShowMeters() {
+    const stored = localStorage.getItem('typingTrainer_showMeters');
+    return stored !== null ? stored === 'true' : true;
+  },
+  setShowMeters(show) {
+    localStorage.setItem('typingTrainer_showMeters', show.toString());
+  },
   getEyeTrackingScreenY() {
     const stored = localStorage.getItem('typingTrainer_eyeTrackingScreenY');
     return stored !== null ? parseFloat(stored) : 0.45;

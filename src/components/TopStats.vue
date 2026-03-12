@@ -187,14 +187,14 @@ const accuracyColor = computed(() => {
 }
 
 .stat-value {
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
   line-height: 1;
   transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
 }
 
 .stat-unit {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #888;
   text-transform: uppercase;
   letter-spacing: 1px;

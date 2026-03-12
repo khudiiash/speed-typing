@@ -72,6 +72,7 @@
         :difficulty="difficulty"
         :show-keyboard="showKeyboard"
         :show-finger-indicator="showFingerIndicator"
+        :show-meters="showMeters"
         :available-categories="availableCategories"
         :enabled-categories="enabledCategories"
         :category-translation-map="categoryTranslationMap"
@@ -81,6 +82,7 @@
         @update:difficulty="handleDifficultyChange"
         @update:show-keyboard="showKeyboard = $event"
         @update:show-finger-indicator="showFingerIndicator = $event"
+        @update:show-meters="showMeters = $event"
         @update:eye-tracking-screen-y="eyeTrackingScreenY = $event"
         @update:eye-tracking-keyboard-y="eyeTrackingKeyboardY = $event"
         @update:theme="handleThemeChange"
@@ -91,7 +93,7 @@
       <!-- Typing View -->
       <div v-if="view === 'typing'" class="typing-view" @click="handleTypingViewClick">
         <div class="typing-layout">
-          <div class="side-stats left-stats">
+          <div class="side-stats left-stats" v-if="showMeters">
             <TopStats
               :is-typing="isTyping"
               :speed="currentSpeed"
@@ -130,7 +132,7 @@
             @update:combo="handleComboUpdate"
           />
           
-          <div class="side-stats right-stats">
+          <div class="side-stats right-stats" v-if="showMeters">
             <TopStats
               :is-typing="isTyping"
               :speed="currentSpeed"
@@ -293,6 +295,7 @@ const showSettings = ref(false);
 const isDarkMode = ref(settingsStorage.getTheme() === 'dark');
 const showKeyboard = ref(settingsStorage.getShowKeyboard());
 const showFingerIndicator = ref(settingsStorage.getShowFingerIndicator());
+const showMeters = ref(settingsStorage.getShowMeters());
 const eyeTrackingScreenY = ref(settingsStorage.getEyeTrackingScreenY());
 const eyeTrackingKeyboardY = ref(settingsStorage.getEyeTrackingKeyboardY()); 
 const showTutorial = ref(false);

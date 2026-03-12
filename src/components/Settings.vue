@@ -44,6 +44,15 @@
                 <div class="toggle-slider"></div>
               </div>
             </div>
+            <div class="setting-divider"></div>
+            <div class="setting-row" @click="handleToggleMeters">
+              <div class="setting-info">
+                <span class="setting-label">{{ t.showMeters }}</span>
+              </div>
+              <div class="toggle-switch" :class="{ active: showMeters }">
+                <div class="toggle-slider"></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -194,6 +203,10 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  showMeters: {
+    type: Boolean,
+    required: true,
+  },
   availableCategories: {
     type: Array,
     default: () => [],
@@ -212,7 +225,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['close', 'update:mode', 'update:difficulty', 'update:showKeyboard', 'update:showFingerIndicator', 'toggleCategory', 'clearStats', 'update:eyeTrackingScreenY', 'update:eyeTrackingKeyboardY', 'update:theme']);
+const emit = defineEmits(['close', 'update:mode', 'update:difficulty', 'update:showKeyboard', 'update:showFingerIndicator', 'update:showMeters', 'toggleCategory', 'clearStats', 'update:eyeTrackingScreenY', 'update:eyeTrackingKeyboardY', 'update:theme']);
 
 const localDifficulty = ref(props.difficulty || 'medium');
 const localScreenY = ref(settingsStorage.getEyeTrackingScreenY());
@@ -238,6 +251,12 @@ function handleToggleFingerIndicator() {
   const newValue = !props.showFingerIndicator;
   settingsStorage.setShowFingerIndicator(newValue);
   emit('update:showFingerIndicator', newValue);
+}
+
+function handleToggleMeters() {
+  const newValue = !props.showMeters;
+  settingsStorage.setShowMeters(newValue);
+  emit('update:showMeters', newValue);
 }
 
 function handleDifficultySliderChange(event) {
