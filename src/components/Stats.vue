@@ -503,7 +503,7 @@ function formatDateLabel(date, showFull = false) {
 }
 
 .improvement.positive {
-  color: #4ecdc4;
+  color: var(--accent-color);
 }
 
 .improvement.negative {

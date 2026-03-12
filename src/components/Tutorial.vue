@@ -339,7 +339,7 @@ function close() {
 }
 
 .finger-ring-l {
-  background: #4ecdc4;
+  background: var(--accent-color);
   color: white;
 }
 
@@ -569,9 +569,9 @@ function close() {
 .info-note {
   margin-top: 0.5rem;
   padding: 0.6rem 0.75rem;
-  background: rgba(78, 205, 196, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
   border-radius: 8px;
-  border: 1px solid rgba(78, 205, 196, 0.3);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
   flex-shrink: 0;
 }
 

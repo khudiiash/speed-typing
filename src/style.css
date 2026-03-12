@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Roboto Mono', 'Consolas', 'Monaco', monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,46 +11,59 @@
 
 :root.dark-mode {
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1a1a1a;
-  --text-color: rgba(255, 255, 255, 0.87);
-  --bg-color: #1a1a1a;
-  --card-bg: #2a2a2a;
-  --card-border: #333;
-  --text-bg: #1e1e1e;
-  --text-border: #333;
-  --input-bg: #1a1a1a;
-  --input-border: #444;
-  --border-color: #333;
-  --text-secondary: #aaa;
-  --keyboard-bg: #2a2a2a;
-  --header-bg: #1a1a1a;
-  --progress-bg: #333;
-  --btn-secondary-bg: #444;
-  --accent-color: #4ecdc4;
-  --timer-color: #4ecdc4;
+  color: #f8fafc;
+  background-color: #0f172a;
+  --text-color: #f8fafc;
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --text-bg: #1e293b;
+  --text-border: #334155;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+  --border-color: #334155;
+  --text-secondary: #94a3b8;
+  --keyboard-bg: #0f172a;
+  --header-bg: #1e293b;
+  --progress-bg: #334155;
+  --btn-secondary-bg: #475569;
+  --accent-color: #38bdf8;
+  --accent-rgb: 56, 189, 248;
+  --timer-color: #38bdf8;
+  --typing-correct: #38bdf8;
+  --typing-upcoming: #64748b;
+  --keyboard-key-border: #334155;
+  --keyboard-key-bg: #1e293b;
 }
 
 :root.light-mode {
   color-scheme: light;
-  color: #213547;
-  background-color: #ffffff;
-  --text-color: #213547;
-  --bg-color: #ffffff;
-  --card-bg: #f5f5f5;
-  --card-border: #ddd;
-  --text-bg: #fafafa;
-  --text-border: #ddd;
+  color: #0f172a;
+  background-color: #f8fafc;
+  --text-color: #0f172a;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-bg: #ffffff;
+  --text-border: #e2e8f0;
   --input-bg: #ffffff;
-  --input-border: #ccc;
-  --border-color: #ddd;
-  --text-secondary: #666;
-  --keyboard-bg: #f0f0f0;
-  --header-bg: #f8f8f8;
-  --progress-bg: #e0e0e0;
-  --btn-secondary-bg: #e0e0e0;
-  --accent-color: #4ecdc4;
-  --timer-color: #4ecdc4;
+  --input-border: #cbd5e1;
+  --border-color: #e2e8f0;
+  --text-secondary: #64748b;
+  --keyboard-bg: #f1f5f9;
+  --header-bg: #ffffff;
+  --progress-bg: #e2e8f0;
+  --btn-secondary-bg: #cbd5e1;
+  --accent-color: #0ea5e9;
+  --accent-rgb: 14, 165, 233;
+  --timer-color: #0ea5e9;
+  --typing-correct: #0ea5e9;
+  --typing-upcoming: #94a3b8;
+  --keyboard-key-border: #cbd5e1;
+  --keyboard-key-bg: #ffffff;
+  --btn-outline-bg: #f8fafc;
+  --btn-outline-border: #cbd5e1;
+  --btn-outline-text: #0f172a;
 }
 
 * {
@@ -71,5 +84,211 @@ html, body {
 
 button {
   font-family: inherit;
+}
+
+/* Light mode: visible buttons and controls */
+:root.light-mode .mode-btn:not(.active) {
+  background: var(--btn-outline-bg, #e5e7eb);
+  border: 1px solid var(--btn-outline-border, #9ca3af);
+  color: var(--btn-outline-text, #1f2937);
+}
+:root.light-mode .mode-btn:not(.active):hover {
+  background: #d1d5db;
+  border-color: #6b7280;
+  color: #111827;
+}
+:root.light-mode .mode-btn.active {
+  color: #fff;
+}
+:root.light-mode .category-btn:not(.active) {
+  background: var(--btn-outline-bg, #e5e7eb);
+  border: 1px solid var(--btn-outline-border, #9ca3af);
+  color: var(--btn-outline-text, #1f2937);
+}
+:root.light-mode .category-btn:not(.active):hover {
+  background: #d1d5db;
+  border-color: #6b7280;
+  color: #111827;
+}
+:root.light-mode .category-btn.active {
+  color: #fff;
+}
+:root.light-mode .section-title {
+  color: #374151;
+}
+:root.light-mode .settings-footer {
+  background: #e5e7eb;
+  border-top-color: #d1d5db;
+}
+:root.light-mode .toggle-switch:not(.active) {
+  background: #d1d5db;
+}
+:root.light-mode .settings-select,
+:root.light-mode .settings-input {
+  border: 1px solid #9ca3af;
+  background: #fff;
+  color: #1f2937;
+}
+:root.light-mode .settings-select:hover,
+:root.light-mode .settings-input:hover {
+  border-color: #6b7280;
+  background: #f9fafb;
+}
+:root.light-mode .settings-select:focus,
+:root.light-mode .settings-input:focus {
+  border-color: var(--accent-color);
+  background: #fff;
+}
+:root.light-mode .settings-select option {
+  background: #fff;
+  color: #1f2937;
+}
+:root.light-mode .settings-close-btn {
+  color: #4b5563;
+}
+:root.light-mode .settings-close-btn:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+:root.light-mode .toggle-label {
+  color: #1f2937;
+}
+:root.light-mode .input-label {
+  color: #4b5563;
+}
+
+/* Light mode: keyboard keys clearly visible */
+:root.light-mode .keyboard {
+  background: var(--keyboard-bg);
+  border: 1px solid #9ca3af;
+}
+:root.light-mode .keyboard.error-blink {
+  animation: keyboardErrorBlinkLight 0.1s ease-in-out;
+}
+@keyframes keyboardErrorBlinkLight {
+  0% { border-color: #9ca3af; }
+  50% { border-color: #dc2626; }
+  100% { border-color: #9ca3af; }
+}
+:root.light-mode .key {
+  border: 1px solid var(--keyboard-key-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  color: #111827;
+}
+:root.light-mode .key-main {
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+}
+:root.light-mode .key.dimmed {
+  opacity: 1;
+}
+:root.light-mode .key.dimmed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: inherit;
+  z-index: 1;
+}
+:root.light-mode .key.expected {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color), 0 4px 12px rgba(var(--accent-rgb), 0.3);
+  transform: scale(1.05);
+  z-index: 10;
+}
+:root.light-mode .key.expected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: inherit;
+  z-index: 1;
+}
+:root.light-mode .key.active {
+  border-color: #111827;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+:root.light-mode .key.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: inherit;
+  z-index: 1;
+}
+:root.light-mode .key.shift-needed {
+  border: 2px solid #d97706 !important;
+}
+:root.light-mode .key.active.modifier-key {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-color: #2563eb;
+}
+:root.light-mode .key[class*="finger-"] {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Light mode: hand outlines visible */
+:root.light-mode .hand-outline {
+  stroke: #6b7280 !important;
+  opacity: 0.45 !important;
+}
+
+/* Light mode: header buttons and language select clearly visible */
+:root.light-mode .app-header {
+  border-bottom-color: #9ca3af;
+}
+:root.light-mode .language-select,
+:root.light-mode .tutorial-btn,
+:root.light-mode .eye-tracker-btn,
+:root.light-mode .stats-header-btn,
+:root.light-mode .settings-btn {
+  background: #e5e7eb;
+  border: 1px solid #9ca3af;
+  color: #1f2937;
+}
+:root.light-mode .language-select:hover,
+:root.light-mode .tutorial-btn:hover,
+:root.light-mode .eye-tracker-btn:hover,
+:root.light-mode .stats-header-btn:hover,
+:root.light-mode .settings-btn:hover {
+  background: rgba(var(--accent-rgb, 37, 99, 235), 0.12);
+  border-color: #2563eb;
+}
+:root.light-mode .tutorial-btn .book-icon,
+:root.light-mode .stats-header-btn .chart-icon,
+:root.light-mode .settings-btn .gear-icon,
+:root.light-mode .eyes-icon {
+  color: #374151;
+}
+:root.light-mode .eye-tracker-btn.active,
+:root.light-mode .tutorial-btn:hover .book-icon,
+:root.light-mode .stats-header-btn:hover .chart-icon,
+:root.light-mode .settings-btn:hover .gear-icon {
+  color: var(--accent-color);
+}
+:root.light-mode .eye-tracker-btn.active .eyes-icon {
+  color: var(--accent-color);
+}
+
+/* Light mode: stats tier 1 use blue accent */
+:root.light-mode .longest-sequence-display.longest-sequence-color-1 {
+  border-bottom-color: var(--accent-color);
+}
+:root.light-mode .longest-sequence-display.longest-sequence-color-1 .longest-sequence-value {
+  color: var(--accent-color);
+}
+:root.light-mode .speed-display.speed-color-1 {
+  border-bottom-color: var(--accent-color);
+}
+:root.light-mode .speed-display.speed-color-1 .speed-value,
+:root.light-mode .speed-display.speed-color-1 .speed-value-small {
+  color: var(--accent-color);
+}
+:root.light-mode .combo-display.combo-color-1 {
+  border-bottom-color: var(--accent-color);
+}
+:root.light-mode .combo-display.combo-color-1 .combo-value {
+  color: var(--accent-color);
 }
 

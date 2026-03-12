@@ -10,6 +10,99 @@ function shuffleArray(array) {
   return shuffled;
 }
 
+const rowChars = {
+  en: {
+    homeRow: 'asdfghjkl;',
+    topRow: 'qwertyuiop',
+    bottomRow: 'zxcvbnm,.'
+  },
+  uk: {
+    homeRow: 'фівапролджє',
+    topRow: 'йцукенгшщзхї',
+    bottomRow: 'ячсмитьбю.'
+  }
+};
+
+function generateTextFromRows(language, selectedRows) {
+  let allowedChars = '';
+  selectedRows.forEach(row => {
+    if (rowChars[language] && rowChars[language][row]) {
+      allowedChars += rowChars[language][row];
+    }
+  });
+  
+  if (!allowedChars) return null;
+  
+  const dictionary = new Set();
+  const data = keySequences[language];
+  if (data) {
+    ['easy', 'medium'].forEach(diff => {
+      if (data[diff]) {
+        Object.values(data[diff]).forEach(categoryArray => {
+          if (Array.isArray(categoryArray)) {
+            categoryArray.forEach(sentence => {
+              const words = sentence.split(/\s+/);
+              words.forEach(w => {
+                const cleanWord = w.toLowerCase().replace(/[.,;:!?()]/g, '');
+                if (cleanWord.length > 0) {
+                  dictionary.add(cleanWord);
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  }
+  
+  if (dictionary.size === 0) {
+    if (language === 'en') {
+      ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me'].forEach(w => dictionary.add(w));
+    } else if (language === 'uk') {
+      ['і', 'в', 'не', 'на', 'що', 'з', 'а', 'та', 'як', 'це', 'до', 'він', 'для', 'я', 'про', 'від', 'його', 'вона', 'вони', 'ми', 'але', 'було', 'тільки', 'щоб', 'бути', 'її', 'їх', 'коли', 'може', 'вже', 'там', 'був', 'якщо', 'чи', 'який', 'дуже', 'через', 'навіть', 'ще', 'всі', 'йому', 'без', 'свій', 'ні', 'під', 'після', 'то', 'буде', 'тоді', 'мене'].forEach(w => dictionary.add(w));
+    }
+  }
+  
+  const validWords = Array.from(dictionary).filter(word => {
+    for (let i = 0; i < word.length; i++) {
+      if (!allowedChars.includes(word[i])) return false;
+    }
+    return true;
+  });
+  
+  if (validWords.length === 0) return null;
+  
+  const rowSets = selectedRows.map(row => new Set(rowChars[language][row].split('')));
+  
+  const scoredWords = validWords.map(word => {
+    let rowsUsed = 0;
+    rowSets.forEach(rowSet => {
+      for (let i = 0; i < word.length; i++) {
+        if (rowSet.has(word[i])) {
+          rowsUsed++;
+          break;
+        }
+      }
+    });
+    return { word, rowsUsed };
+  });
+  
+  let preferredWords = scoredWords.filter(w => w.rowsUsed > 1).map(w => w.word);
+  if (preferredWords.length < 5) {
+    preferredWords = validWords;
+  }
+  
+  const sequenceLength = 20;
+  const selectedWords = [];
+  for (let i = 0; i < sequenceLength; i++) {
+    const wordList = (Math.random() < 0.7 && preferredWords.length > 0) ? preferredWords : validWords;
+    const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+    selectedWords.push(randomWord);
+  }
+  
+  return selectedWords.join(' ');
+}
+
 export async function getPracticeText(language, mode, difficulty = 'easy', category = null, enabledCategories = null) {
   if (mode === 'sequences') {
     const difficultyData = keySequences[language]?.[difficulty] || keySequences.en?.[difficulty] || {};
@@ -44,18 +137,34 @@ export async function getPracticeText(language, mode, difficulty = 'easy', categ
         difficultyData[cat] && Array.isArray(difficultyData[cat]) && difficultyData[cat].length > 0
       );
       
-      if (availableCategories.length > 0) {
-        const randomCategory = availableCategories[
-          Math.floor(Math.random() * availableCategories.length)
-        ];
-        allSequences = difficultyData[randomCategory];
+      const rowCategories = ['homeRow', 'topRow', 'bottomRow'];
+      const selectedRows = enabledCategories.filter(cat => rowCategories.includes(cat));
+      
+      let pool = [...availableCategories];
+      if (selectedRows.length > 1) {
+        pool = pool.filter(cat => !rowCategories.includes(cat));
+        pool.push('combinedRows');
+      }
+      
+      if (pool.length > 0) {
+        const randomCategory = pool[Math.floor(Math.random() * pool.length)];
+        
+        if (randomCategory === 'combinedRows') {
+          const combinedText = generateTextFromRows(language, selectedRows);
+          if (combinedText) {
+            return { text: combinedText, sourceUrl: null, sourceTitle: null };
+          }
+          // Fallback if generation fails
+          allSequences = difficultyData[selectedRows[Math.floor(Math.random() * selectedRows.length)]];
+        } else {
+          allSequences = difficultyData[randomCategory];
+        }
       }
     }
     
     const shuffled = shuffleArray(allSequences);
-    const count = difficulty === 'easy' ? 3 : difficulty === 'medium' ? 5 : 7;
-    const selected = shuffled.slice(0, Math.min(count, shuffled.length));
-    return { text: selected.join(' '), sourceUrl: null, sourceTitle: null };
+    const selectedText = shuffled[0] || '';
+    return { text: selectedText, sourceUrl: null, sourceTitle: null };
   } else {
     try {
       const apiResult = await getRandomText(language, difficulty);
@@ -74,9 +183,8 @@ export async function getPracticeText(language, mode, difficulty = 'easy', categ
       const allTexts = textSamples[language]?.easy || textSamples.en?.easy || [];
       if (allTexts.length > 0) {
         const shuffled = shuffleArray(allTexts);
-        const count = difficulty === 'easy' ? 2 : difficulty === 'medium' ? 3 : 4;
-        const selected = shuffled.slice(0, Math.min(count, shuffled.length));
-        return { text: selected.join(' '), sourceUrl: null, sourceTitle: null };
+        const selectedText = shuffled[0] || '';
+        return { text: selectedText, sourceUrl: null, sourceTitle: null };
       }
       return { text: 'No practice text available', sourceUrl: null, sourceTitle: null };
     }
@@ -84,13 +192,6 @@ export async function getPracticeText(language, mode, difficulty = 'easy', categ
     
     const shuffled = shuffleArray(difficultyTexts);
     const selectedText = shuffled[0];
-    
-    
-    if (selectedText.length < 300) {
-      const count = difficulty === 'easy' ? 2 : difficulty === 'medium' ? 3 : 4;
-      const selected = shuffled.slice(0, Math.min(count, shuffled.length));
-      return { text: selected.join(' '), sourceUrl: null, sourceTitle: null };
-    }
     
     return { text: selectedText, sourceUrl: null, sourceTitle: null };
   }

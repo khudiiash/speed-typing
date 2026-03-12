@@ -815,7 +815,7 @@ function dismissWarning() {
 .eye-position-value {
   font-size: 16px;
   font-weight: bold;
-  color: #4ecdc4;
+  color: var(--accent-color);
 }
 
 .eye-tracker-calibration {
@@ -861,7 +861,7 @@ function dismissWarning() {
 .calibration-content,
 .warning-content {
   background: #2a2a2a !important;
-  border: 2px solid #4ecdc4 !important;
+  border: 2px solid var(--accent-color) !important;
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -912,7 +912,7 @@ function dismissWarning() {
 
 .calibration-content h3,
 .warning-content h3 {
-  color: #4ecdc4 !important;
+  color: var(--accent-color) !important;
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: bold;
@@ -972,7 +972,7 @@ function dismissWarning() {
 
 .eye-tracker-warning .warning-content {
   background: #2a2a2a !important;
-  border: 2px solid #4ecdc4 !important;
+  border: 2px solid var(--accent-color) !important;
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -995,7 +995,7 @@ function dismissWarning() {
 }
 
 .eye-tracker-warning .warning-content h3 {
-  color: #4ecdc4 !important;
+  color: var(--accent-color) !important;
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: bold;
@@ -1018,7 +1018,7 @@ function dismissWarning() {
   padding: 0.75rem 2rem;
   border-radius: 6px;
   border: none;
-  background: #4ecdc4 !important;
+  background: var(--accent-color) !important;
   color: #000 !important;
   font-size: 1rem;
   font-weight: bold;

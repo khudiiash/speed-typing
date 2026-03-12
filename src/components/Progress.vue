@@ -200,7 +200,7 @@ h2 {
 
 .chart-bar {
   flex: 1;
-  background: linear-gradient(to top, #4ecdc4, #45b7d1);
+  background: linear-gradient(to top, var(--accent-color), #45b7d1);
   border-radius: 4px 4px 0 0;
   min-height: 4px;
   cursor: pointer;

@@ -6,6 +6,7 @@
           <path fill="currentColor" d="M13.4,70.3c-0.6,0.2-1.7,1.1-2.3,1.9L10,73.7V128v54.4l1.8,1.8l1.8,1.8H128h114.3l1.8-1.8l1.8-1.8V128V73.5l-1.6-1.7l-1.6-1.8l-114.2-0.1C65.9,69.8,14,70,13.4,70.3z M43,90c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-3.6,0-4-0.1-4.9-1.3c-1.2-1.9-0.9-8.2,0.6-9.2C35.5,88.8,41.7,88.9,43,90z M62.2,90c1,0.7,1.2,1.3,1.2,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.6,0.9-5.5,5.6-5.5C59.7,89.1,61.3,89.4,62.2,90z M81.6,90c1,0.7,1.2,1.3,1.2,4.4c0,5.3-0.6,6-5.5,6c-5.2,0-5.8-0.6-5.8-5.5s0.9-5.8,5.6-5.8C79.1,89.1,80.7,89.4,81.6,90z M101.1,90.2c0.9,0.9,1.1,1.8,1.1,4.5c0,5-0.7,5.8-5.5,5.8c-5.2,0-5.8-0.6-5.8-5.7c0-4.9,0.8-5.6,5.8-5.6C99.3,89.1,100.2,89.3,101.1,90.2z M120.5,90.3c1,1,1.1,1.6,0.9,4.9c-0.3,4.7-0.9,5.3-5.9,5.3c-4.8,0-5.3-0.5-5.3-5.5c0-5.2,0.6-5.8,5.5-5.8C118.7,89.1,119.6,89.3,120.5,90.3z M139.1,89.6c1.1,0.8,1.8,2.7,1.8,5.2c0,2.5-0.7,4.5-1.8,5.2c-0.9,0.6-7.3,0.5-8.5-0.1c-0.9-0.5-1-1.2-1-4.7c0-5.4,0.5-6.1,5.3-6.1C136.9,89.1,138.8,89.3,139.1,89.6z M158.8,90c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-3.6,0-4-0.1-4.8-1.3c-1.2-1.9-0.9-8.2,0.6-9.2C151.3,88.8,157.5,88.9,158.8,90z M178.2,90c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.7,0.9-5.5,5.8-5.5C176.2,89.1,177.5,89.4,178.2,90z M197.4,90c1,0.7,1.2,1.3,1.2,4.4c0,5.3-0.6,6-5.5,6c-5.2,0-5.8-0.6-5.8-5.5s0.9-5.8,5.5-5.8C195,89.1,196.6,89.4,197.4,90z M222.8,90.2c0.3,0.6,0.5,2.6,0.5,4.6c0,2.9-0.2,3.8-1.1,4.7c-1,1-1.6,1.1-8.4,0.9c-5.7-0.1-7.4-0.3-7.8-1c-0.8-1.2-0.6-8.8,0.1-9.6c0.4-0.4,3.1-0.6,8.4-0.6C221.6,89.1,222.3,89.2,222.8,90.2z M67.8,112.1c0.8,0.7,1,1.7,1,4.6c0,5.1-0.6,5.8-5.4,5.8c-5.1,0-5.7-0.5-5.7-5.7c0-3.4,0.2-4.3,1-4.9C60.3,110.8,66.5,111,67.8,112.1z M87.2,112.1c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.7,0.9-5.5,5.8-5.5C85.2,111.2,86.5,111.5,87.2,112.1z M106.3,112.1c1,0.7,1.2,1.3,1.2,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.6,0.9-5.5,5.5-5.5C103.9,111.2,105.5,111.5,106.3,112.1z M125.8,112.3c0.9,0.9,1.1,1.8,1.1,4.5c0,5-0.7,5.8-5.5,5.8c-5.2,0-5.8-0.6-5.8-5.7c0-4.9,0.8-5.6,5.8-5.6C124.1,111.2,125,111.4,125.8,112.3z M145.2,112.3c0.9,0.9,1.1,1.8,1.1,4.6c0,4.8-0.9,5.7-5.8,5.7s-5.5-0.6-5.5-5.6c0-5.1,0.6-5.8,5.5-5.8C143.5,111.2,144.4,111.4,145.2,112.3z M164.3,111.9c1.1,0.8,1.8,5.2,1.2,7.6c-0.6,2.4-1.7,3-5.7,3c-4.9,0-5.4-0.5-5.4-5.5c0-5.2,0.6-5.8,5.4-5.8C161.9,111.2,163.8,111.5,164.3,111.9z M183.6,112.1c0.8,0.7,1,1.7,1,4.8c0,5.1-0.5,5.6-5.3,5.6c-4.6,0-5.5-0.6-5.9-4.2c-0.3-3.2,0.1-5.1,1.3-6.2C175.8,110.8,182.3,110.9,183.6,112.1z M203,112.1c0.8,0.7,1,1.7,1,4.6c0,5.1-0.6,5.8-5.5,5.8c-5,0-5.8-0.8-5.8-5.7c0-4.8,0.9-5.7,5.8-5.7C201,111.2,202.3,111.5,203,112.1z M222.4,112.1c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.7,0.9-5.5,5.8-5.5C220.4,111.2,221.7,111.5,222.4,112.1z M49,112.6c0.6,1.6,0.3,8.6-0.3,9.3c-0.4,0.4-3,0.6-7.8,0.6c-8.3,0-8.2,0.1-8.2-5.4s-0.1-5.4,8.6-5.4C47.5,111.8,48.7,111.9,49,112.6z M73.6,134.4c1,1,1.1,1.6,0.9,4.9c-0.3,4.7-0.9,5.3-5.9,5.3c-4.8,0-5.3-0.5-5.3-5.5c0-5.2,0.6-5.8,5.5-5.8C71.9,133.3,72.7,133.5,73.6,134.4z M92.7,134.2c0.6,0.6,0.9,1.9,0.9,4.8c0,5.1-0.5,5.7-5.2,5.7c-5.3,0-5.6-0.3-5.6-5.4c0-5.4,0.4-5.9,5.4-5.9C90.8,133.3,92.1,133.5,92.7,134.2z M111.9,134.2c0.8,0.7,1,1.7,1,4.6c0,5.1-0.6,5.8-5.5,5.8c-5,0-5.8-0.8-5.8-5.7c0-4.8,0.9-5.7,5.8-5.7C110,133.3,111.2,133.6,111.9,134.2z M131.3,134.2c0.8,0.7,1,1.7,1,4.6c0,5.2-0.6,5.8-5.7,5.8c-4.9,0-5.6-0.8-5.6-5.8c0-4.7,0.9-5.6,5.8-5.6C129.3,133.3,130.6,133.6,131.3,134.2z M150.7,134.2c0.8,0.6,1,1.7,1,4.4c0,5.2-0.7,6-5.5,6c-5.2,0-5.8-0.6-5.8-5.5c0-5,0.8-5.8,5.8-5.8C148.7,133.3,150,133.6,150.7,134.2z M170,134.4c0.9,0.9,1.1,1.8,1.1,4.6c0,4.8-0.9,5.7-5.8,5.7c-4.9,0-5.5-0.6-5.5-5.5c0-5.1,0.6-5.8,5.5-5.8C168.2,133.3,169.2,133.5,170,134.4z M189.5,134.4c1,1,1.1,1.6,0.9,4.9c-0.3,4.7-0.9,5.3-5.8,5.3c-4.8,0-5.4-0.6-5.4-5.5c0-5.1,0.6-5.8,5.5-5.8C187.7,133.3,188.6,133.5,189.5,134.4z M54.1,134.5c0.4,0.4,0.6,2.3,0.6,4.7c0,2.5-0.3,4.4-0.6,4.7c-0.4,0.4-3.4,0.6-10.1,0.6c-6.7,0-9.7-0.2-10.1-0.6c-0.4-0.4-0.6-2.3-0.6-4.9c0-3.4,0.2-4.3,1-4.7C35.5,133.6,53.3,133.7,54.1,134.5z M222.5,135c0.5,0.8,0.9,2.4,0.9,4.2c0,1.8-0.3,3.4-0.9,4.2c-0.8,1.1-1.1,1.2-11.7,1.2c-7.8,0-11-0.2-11.5-0.6c-0.9-0.9-0.9-8.6,0-9.5c0.5-0.5,3.8-0.6,11.5-0.6C221.4,133.9,221.7,133.9,222.5,135z M43,156.3c0.8,0.7,1,1.7,1,4.6c0,5.1-0.6,5.8-5.5,5.8c-5,0-5.8-0.8-5.8-5.7c0-4.8,0.9-5.7,5.8-5.7C41,155.4,42.3,155.7,43,156.3z M62.4,156.3c0.8,0.7,1,1.7,1,4.6c0,5.1-0.6,5.8-5.5,5.8c-5,0-5.8-0.8-5.8-5.7c0-4.8,0.9-5.7,5.8-5.7C60.4,155.4,61.7,155.7,62.4,156.3z M81.8,156.3c0.8,0.6,1,1.7,1,4.4c0,5.2-0.7,6-5.5,6c-5.2,0-5.8-0.6-5.8-5.5c0-5.2,0.6-5.8,5.6-5.8C79.8,155.4,81,155.6,81.8,156.3z M163.9,156.8c1.2,1.9,0.9,8.2-0.6,9.2c-0.9,0.6-7.1,0.8-35.9,0.8c-31,0-35-0.1-35.7-0.9c-0.6-0.6-0.9-1.9-0.9-4.8c0-2.9,0.2-4.2,0.9-4.8c0.8-0.8,4.7-0.9,36-0.9H163L163.9,156.8z M183.6,156.3c1.3,1.2,1.4,8,0.1,9.4c-1.2,1.3-8,1.4-9.4,0.1c-1.3-1.2-1.4-8-0.1-9.4C175.4,155,182.1,155,183.6,156.3z M202.9,156.5c0.9,0.9,1.1,1.8,1.1,4.5c0,5-0.7,5.8-5.5,5.8c-5.2,0-5.8-0.6-5.8-5.5c0-5.1,0.6-5.8,5.5-5.8C201.1,155.4,202,155.6,202.9,156.5z M222,156.2c0.8,0.6,1.1,1.6,1.2,4.5c0.3,5.2-0.5,6-5.8,6c-5,0-5.4-0.5-5.4-5.5c0-5.2,0.6-5.8,5.4-5.8C219.7,155.4,221.4,155.7,222,156.2z"/>
         </svg>
       </div>
+
       <div class="header-actions">
         <select v-model="language" @change="handleLanguageChange" class="language-select">
           <option value="en">English</option>
@@ -49,6 +50,11 @@
             <path fill="currentColor" d="M10,135.1c0.1,50.5,0.4,74.6,0.8,74.5c0.4-0.1,7.1-0.4,15.1-0.8c28.3-1.4,54.4,1.4,71.9,7.5c2.9,1,8.5,3.4,12.4,5.3c9.6,4.9,14.8,6.8,17.8,6.8c3.1,0,8.2-1.9,17.6-6.6c19.1-9.6,39.2-13.3,71.6-13.2c9.3,0.1,19.6,0.3,22.9,0.6l6,0.5v-74.6c0-59.5-0.2-74.6-0.7-74.3c-0.4,0.1-4.9,1.5-9.8,3l-9.1,2.7v64.4c0,69.8,0.1,67-3.3,68.8c-0.9,0.5-6.5,0.9-16.7,1.2c-8.4,0.2-18,0.7-21.2,1.1c-19.9,2.3-36.1,7.1-51,14.9l-5.9,3.1l-8.9-4.4c-20.5-10.1-38.5-13.9-70.2-14.7l-15.9-0.4l-1.7-1.7l-1.7-1.7l-0.2-65.4l-0.1-65.4l-9.1-2.6c-5-1.5-9.4-2.8-9.8-3C10,60.6,9.9,75.5,10,135.1z"/>
           </svg>
         </button>
+        <button @click="view = 'globalStats'" class="stats-header-btn" :title="t.globalStatistics || t.stats">
+          <svg class="chart-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 20V10M12 20V4M6 20v-6"/>
+          </svg>
+        </button>
         <button @click="showSettings = !showSettings" class="settings-btn" :title="t.settings">
           <svg class="gear-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <path fill="currentColor" d="M233.1,104.6h-12.5c-2.3-9.1-5.9-17.6-10.7-25.3l9-9c2.4-2.4,3.8-5.7,3.8-9.1s-1.3-6.7-3.8-9.1l-15-15c-4.9-4.9-13.4-4.9-18.2,0l-9.4,9.3c-7.7-4.5-15.9-7.9-25-10.1V22.9c0-7.1-5.7-12.9-12.8-12.9h-21.2c-7.1,0-12.7,5.8-12.7,12.9v13.4c-9.1,2.2-17.3,5.7-25,10.1l-9.4-9.3c-4.9-4.9-13.4-4.9-18.2,0l-15,15c-2.4,2.4-3.8,5.7-3.8,9.1c0,3.4,1.3,6.7,3.8,9.1l9,9c-4.7,7.8-8.4,16.3-10.7,25.3H22.8c-7.1,0-12.8,5.7-12.8,12.8v21.2c0,7.1,5.7,12.7,12.8,12.7h12.5c2.3,9.1,5.9,17.6,10.7,25.4l-9,9.1c-2.4,2.4-3.8,5.7-3.8,9.1c0,3.4,1.3,6.7,3.8,9.1l15,15c2.4,2.4,5.7,3.8,9.1,3.8c3.4,0,6.7-1.3,9.1-3.8l9.4-9.3c7.7,4.5,16,7.9,25,10.2v13.4c0,7.1,5.6,12.8,12.7,12.8h21.2c7.1,0,12.8-5.7,12.8-12.8v-13.4c9.1-2.2,17.3-5.7,25-10.1l9.3,9.3c2.4,2.4,5.7,3.8,9.1,3.8s6.7-1.3,9.1-3.8l15-15c2.4-2.4,3.8-5.7,3.8-9.1c0-3.4-1.3-6.7-3.8-9.1l-9-9.1c4.7-7.8,8.4-16.3,10.7-25.4h12.5c7.1,0,12.9-5.6,12.9-12.7v-21.2C246.1,110.4,240.2,104.6,233.1,104.6z M128,168.4c-22.5,0-40.7-18.1-40.7-40.3c0-22.3,18.2-40.3,40.7-40.3c22.5,0,40.7,18,40.7,40.3C168.7,150.3,150.5,168.4,128,168.4z"/>
@@ -69,6 +75,7 @@
         :available-categories="availableCategories"
         :enabled-categories="enabledCategories"
         :category-translation-map="categoryTranslationMap"
+        :is-dark-mode="isDarkMode"
         @close="showSettings = false"
         @update:mode="selectMode"
         @update:difficulty="handleDifficultyChange"
@@ -76,40 +83,63 @@
         @update:show-finger-indicator="showFingerIndicator = $event"
         @update:eye-tracking-screen-y="eyeTrackingScreenY = $event"
         @update:eye-tracking-keyboard-y="eyeTrackingKeyboardY = $event"
+        @update:theme="handleThemeChange"
         @toggle-category="toggleCategory"
         @clear-stats="handleClearStats"
       />
 
       <!-- Typing View -->
       <div v-if="view === 'typing'" class="typing-view" @click="handleTypingViewClick">
-        <TypingArea
-          ref="typingAreaRef"
-          :target-text="currentText"
-          :source-url="textSourceUrl"
-          :source-title="textSourceTitle"
-          :is-loading="isLoadingText"
-          :is-active="isTyping && !isLookingAtKeyboard"
-          :is-paused="isPaused || isLookingAtKeyboard"
-          :time-remaining="timeRemaining"
-          :language="language"
-          :t="t"
-          :eye-tracking-avg-y="eyeTrackingAvgY"
-          :eye-tracking-screen-y="eyeTrackingScreenY"
-          :eye-tracking-keyboard-y="eyeTrackingKeyboardY"
-          :eye-tracking-enabled="eyeTrackingEnabled"
-          :eye-tracking-ready="eyeTrackingReady"
-          :is-looking-at-keyboard="isLookingAtKeyboard"
-          @input="handleTypingInput"
-          @keydown="handleKeyDown"
-          @keyup="handleKeyUp"
-          @complete="handleComplete"
-          @update:activeKey="activeKey = $event"
-          @update:errorKey="errorKey = $event"
-          @update:expectedKey="expectedKey = $event"
-          @update:mistakes="handleMistakesUpdate"
-          @update:shiftPressed="isShiftPressed = $event"
-          @update:combo="handleComboUpdate"
-        />
+        <div class="typing-layout">
+          <div class="side-stats left-stats">
+            <TopStats
+              :is-typing="isTyping"
+              :speed="currentSpeed"
+              :accuracy="currentAccuracy"
+              :t="t"
+              type="speed"
+            />
+          </div>
+          
+          <TypingArea
+            ref="typingAreaRef"
+            :target-text="currentText"
+            :source-url="textSourceUrl"
+            :source-title="textSourceTitle"
+            :is-loading="isLoadingText"
+            :is-active="isTyping && !isLookingAtKeyboard"
+            :is-paused="isPaused || isLookingAtKeyboard"
+            :time-remaining="timeRemaining"
+            :language="language"
+            :t="t"
+            :eye-tracking-avg-y="eyeTrackingAvgY"
+            :eye-tracking-screen-y="eyeTrackingScreenY"
+            :eye-tracking-keyboard-y="eyeTrackingKeyboardY"
+            :eye-tracking-enabled="eyeTrackingEnabled"
+            :eye-tracking-ready="eyeTrackingReady"
+            :is-looking-at-keyboard="isLookingAtKeyboard"
+            @input="handleTypingInput"
+            @keydown="handleKeyDown"
+            @keyup="handleKeyUp"
+            @complete="handleComplete"
+            @update:activeKey="activeKey = $event"
+            @update:errorKey="errorKey = $event"
+            @update:expectedKey="expectedKey = $event"
+            @update:mistakes="handleMistakesUpdate"
+            @update:shiftPressed="isShiftPressed = $event"
+            @update:combo="handleComboUpdate"
+          />
+          
+          <div class="side-stats right-stats">
+            <TopStats
+              :is-typing="isTyping"
+              :speed="currentSpeed"
+              :accuracy="currentAccuracy"
+              :t="t"
+              type="accuracy"
+            />
+          </div>
+        </div>
         
         <Keyboard
           v-if="showKeyboard"
@@ -128,15 +158,6 @@
           :t="t"
         />
         
-        <!-- Left Stats (Longest Sequence, Speed, Combo) -->
-        <LeftStats
-          :is-typing="isTyping"
-          :max-combo="maxCombo"
-          :speed="currentSpeed"
-          :combo="currentCombo"
-          :t="t"
-        />
-        
         <div class="typing-controls" v-if="isPaused">
           <button @click="resumeTyping" class="btn-primary">
             {{ t.resume }}
@@ -144,7 +165,7 @@
         </div>
       </div>
 
-      <!-- Stats View -->
+      <!-- Stats View (after session) -->
       <div v-if="view === 'stats'" class="stats-view">
         <Stats
           ref="statsRef"
@@ -154,6 +175,15 @@
           :language="language"
           @new-session="handleNewSession"
           @back-to-menu="view = 'typing'; handleNewSession()"
+        />
+      </div>
+
+      <!-- Global Statistics View -->
+      <div v-if="view === 'globalStats'" class="stats-view">
+        <GlobalStats
+          :all-sessions="allSessions"
+          :t="t"
+          @close="view = 'typing'"
         />
       </div>
 
@@ -228,10 +258,11 @@ import TypingArea from './components/TypingArea.vue';
 import Keyboard from './components/Keyboard.vue';
 import Stats from './components/Stats.vue';
 import Settings from './components/Settings.vue';
-import LeftStats from './components/LeftStats.vue';
+import TopStats from './components/TopStats.vue';
 import Tutorial from './components/Tutorial.vue';
 import FingerIndicator from './components/FingerIndicator.vue';
 import EyeTracker from './components/EyeTracker.vue';
+import GlobalStats from './components/GlobalStats.vue';
 
 const eyeTrackerRef = ref(null);
 const currentEyePosition = ref(0.5);
@@ -249,7 +280,7 @@ function handleSmoothedAverageUpdate(value) {
   }
 }
 import { translations } from './data/translations.js';
-import { getPracticeText, calculateStats, shouldIncreaseDifficulty, getAvailableCategories } from './utils/practiceGenerator.js';
+import { getPracticeText, calculateStats, getAvailableCategories } from './utils/practiceGenerator.js';
 import { initDB, saveSession, getAllSessions, clearAllSessions } from './utils/storage.js';
 import { settingsStorage } from './utils/storage.js';
 import { keySequences } from './data/practiceData.js';
@@ -259,7 +290,7 @@ const language = ref(settingsStorage.getLanguage());
 const mode = ref(settingsStorage.getMode());
 const difficulty = ref(settingsStorage.getDifficulty() || 'medium');
 const showSettings = ref(false);
-const isDarkMode = ref(true);
+const isDarkMode = ref(settingsStorage.getTheme() === 'dark');
 const showKeyboard = ref(settingsStorage.getShowKeyboard());
 const showFingerIndicator = ref(settingsStorage.getShowFingerIndicator());
 const eyeTrackingScreenY = ref(settingsStorage.getEyeTrackingScreenY());
@@ -275,19 +306,11 @@ const calibrationTotal = ref(30);
 
 const enabledCategories = ref(new Set());
 const categoryTranslationMap = {
-  homeRowLeft: 'categoryHomeRowLeft',
-  homeRowRight: 'categoryHomeRowRight',
-  homeRowBoth: 'categoryHomeRowBoth',
-  topRowLeft: 'categoryTopRowLeft',
-  topRowRight: 'categoryTopRowRight',
-  topRowBoth: 'categoryTopRowBoth',
-  bottomRowLeft: 'categoryBottomRowLeft',
-  bottomRowRight: 'categoryBottomRowRight',
-  bottomRowBoth: 'categoryBottomRowBoth',
+  homeRow: 'categoryHomeRow',
+  topRow: 'categoryTopRow',
+  bottomRow: 'categoryBottomRow',
   simpleWords: 'categorySimpleWords',
-  numbersLeft: 'categoryNumbersLeft',
-  numbersRight: 'categoryNumbersRight',
-  numbersBoth: 'categoryNumbersBoth',
+  numbers: 'categoryNumbers',
   capitals: 'categoryCapitals',
   punctuation: 'categoryPunctuation',
   letterCombinations: 'categoryLetterCombinations',
@@ -346,15 +369,34 @@ const comboColorClass = computed(() => {
 });
 
 
+const recentKeystrokes = ref([]);
+
 const currentSpeed = computed(() => {
-  if (!isTyping.value || elapsedTime.value <= 0) {
+  const _tick = elapsedTime.value;
+  if (!isTyping.value || _tick <= 0) {
     return { wpm: 0, cpm: 0 };
   }
-  const correctChars = userInput.value.split('').filter((char, i) => char === currentText.value[i]).length;
-  const words = userInput.value.trim().split(/\s+/).filter(w => w.length > 0).length;
-  const cpm = Math.round((correctChars / elapsedTime.value) * 60);
-  const wpm = Math.round((words / elapsedTime.value) * 60);
+
+  const now = Date.now();
+  const windowMs = 3000;
+  
+  // Filter keystrokes within the window
+  const recent = recentKeystrokes.value.filter(time => now - time <= windowMs);
+  
+  // Calculate actual window duration, minimum 1 second to avoid crazy spikes at the very start
+  const actualWindowMs = Math.max(1000, Math.min(_tick * 1000, windowMs));
+  if (actualWindowMs <= 0) return { wpm: 0, cpm: 0 };
+
+  const cpm = Math.round((recent.length / (actualWindowMs / 1000)) * 60);
+  const wpm = Math.round(cpm / 5);
+
   return { wpm, cpm };
+});
+
+const currentAccuracy = computed(() => {
+  if (totalCharsTyped.value === 0) return 100;
+  const correctChars = totalCharsTyped.value - totalMistakes.value;
+  return Math.round((correctChars / totalCharsTyped.value) * 100);
 });
 
 
@@ -466,22 +508,27 @@ function handleGlobalKeydown(event) {
   
   if (event.key === 'Enter' && !event.target.matches('input, textarea, select')) {
     if (view.value === 'stats') {
-      
+      event.preventDefault();
       view.value = 'typing';
       isLoadingText.value = true;
       userInput.value = '';
       activeKey.value = '';
       errorKey.value = '';
       startSession();
+    } else if (view.value === 'globalStats') {
+      event.preventDefault();
+      view.value = 'typing';
     } else if (view.value === 'typing' && !isTyping.value && userInput.value.length === 0) {
+      event.preventDefault();
       startSession();
     }
   }
-  
-  
+
   if (event.key === 'Escape') {
     if (showSettings.value) {
       showSettings.value = false;
+    } else if (view.value === 'globalStats') {
+      view.value = 'typing';
     }
   }
 }
@@ -493,25 +540,23 @@ watch(language, (newLang) => {
 watch(showSettings, (newVal, oldVal) => {
   if (!newVal && oldVal && view.value === 'typing') {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 });
-
 
 watch([view, showSettings], ([newView, newShowSettings]) => {
   if (newView === 'typing' && !newShowSettings) {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 });
 
-
 watch(isTyping, (newVal) => {
   if (newVal && view.value === 'typing' && !showSettings.value) {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 });
@@ -606,10 +651,11 @@ function toggleCategory(category) {
 
 
 function updateTheme() {
-  
+  const theme = settingsStorage.getTheme();
   const root = document.documentElement;
-  root.classList.remove('light-mode');
-  root.classList.add('dark-mode');
+  root.classList.remove('light-mode', 'dark-mode');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  isDarkMode.value = theme === 'dark';
 }
 
 function closeTutorial() {
@@ -618,7 +664,7 @@ function closeTutorial() {
   
   if (view.value === 'typing') {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 }
@@ -645,14 +691,11 @@ async function startSession() {
     textSourceUrl.value = null;
     textSourceTitle.value = null;
   } else if (practiceResult && typeof practiceResult === 'object' && practiceResult !== null && 'text' in practiceResult) {
-    
     const textValue = practiceResult.text;
     currentText.value = typeof textValue === 'string' ? textValue : String(textValue || '');
     textSourceUrl.value = practiceResult.sourceUrl || null;
     textSourceTitle.value = practiceResult.sourceTitle || null;
   } else {
-    
-    
     currentText.value = typeof practiceResult === 'object' && practiceResult !== null 
       ? String(practiceResult) 
       : (typeof practiceResult === 'string' ? practiceResult : '');
@@ -666,7 +709,6 @@ async function startSession() {
   }
   
   
-  currentText.value = limitTextLength(currentText.value, difficulty.value);
   } finally {
     isLoadingText.value = false;
   }
@@ -681,6 +723,7 @@ async function startSession() {
   isShiftPressed.value = false;
   currentCombo.value = 0;
   maxCombo.value = 0;
+  recentKeystrokes.value = [];
   view.value = 'typing';
   isTyping.value = false;
   isPaused.value = false;
@@ -691,7 +734,7 @@ async function startSession() {
   
   nextTick(() => {
     if (!showSettings.value) {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     }
   });
 }
@@ -720,7 +763,7 @@ function startTyping() {
     
   }, 100);
   
-  typingAreaRef.value?.$el.querySelector('input')?.focus();
+  typingAreaRef.value?.$el.querySelector('textarea')?.focus();
 }
 
 function handleTypingViewClick(event) {
@@ -729,7 +772,7 @@ function handleTypingViewClick(event) {
   }
   if (view.value === 'typing') {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 }
@@ -784,24 +827,29 @@ function endSession() {
   });
   
   
-  if (shouldIncreaseDifficulty(stats, difficulty.value)) {
-    const difficulties = ['easy', 'medium', 'hard', 'expert'];
-    const currentIndex = difficulties.indexOf(difficulty.value);
-    if (currentIndex < difficulties.length - 1) {
-      difficulty.value = difficulties[currentIndex + 1];
-      saveSettings(true); 
-    }
-  }
-  
   view.value = 'stats';
 }
 
 function handleTypingInput(input) {
+  const oldLength = userInput.value.length;
   userInput.value = input;
+  const newLength = userInput.value.length;
   
   const canStartTyping = !eyeTrackingEnabled.value || (eyeTrackingEnabled.value && eyeTrackingReady.value);
   if (!isTyping.value && !isPaused.value && input.length > 0 && canStartTyping) {
     startTyping();
+  }
+
+  if (newLength > oldLength) {
+    const now = Date.now();
+    for (let i = 0; i < newLength - oldLength; i++) {
+      recentKeystrokes.value.push(now);
+    }
+    // Optional: clean up old keystrokes to prevent array growing too large over long sessions
+    if (recentKeystrokes.value.length > 1000) {
+      const windowMs = 3000;
+      recentKeystrokes.value = recentKeystrokes.value.filter(time => now - time <= windowMs);
+    }
   }
 }
 
@@ -866,6 +914,11 @@ async function handleClearStats() {
   }
 }
 
+function handleThemeChange(theme) {
+  settingsStorage.setTheme(theme);
+  updateTheme();
+}
+
 function handleLookingAtKeyboard() {
   if (isTyping.value && !isPaused.value) {
     pauseTyping();
@@ -889,7 +942,7 @@ function handleEyeTrackerToggle() {
   
   if (view.value === 'typing' && !showSettings.value) {
     nextTick(() => {
-      typingAreaRef.value?.$el.querySelector('input')?.focus();
+      typingAreaRef.value?.$el.querySelector('textarea')?.focus();
     });
   }
 }
@@ -930,7 +983,7 @@ function handleEyeTrackingReady(ready) {
     
     if (view.value === 'typing' && !showSettings.value) {
       nextTick(() => {
-        typingAreaRef.value?.$el.querySelector('input')?.focus();
+        typingAreaRef.value?.$el.querySelector('textarea')?.focus();
       });
     }
   }
@@ -953,9 +1006,29 @@ function handleEyePositionUpdate(position) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   background: var(--header-bg, #1a1a1a);
   border-bottom: 2px solid var(--border-color, #333);
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color, #4ecdc4);
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .logo-container {
@@ -1007,7 +1080,7 @@ function handleEyePositionUpdate(position) {
 
 .tutorial-btn:hover {
   border-color: var(--accent-color, #4ecdc4);
-  background: rgba(78, 205, 196, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 .book-icon {
@@ -1048,12 +1121,12 @@ function handleEyePositionUpdate(position) {
 
 .eye-tracker-btn:hover {
   border-color: var(--accent-color, #4ecdc4);
-  background: rgba(78, 205, 196, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 .eye-tracker-btn.active {
   border-color: var(--accent-color, #4ecdc4);
-  background: rgba(78, 205, 196, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
 }
 
 .eyes-icon {
@@ -1068,6 +1141,35 @@ function handleEyePositionUpdate(position) {
 
 .eyes-icon .closed-eyes {
   opacity: 1;
+}
+
+.stats-header-btn {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 2px solid var(--card-border, #333);
+  background: var(--card-bg, #2a2a2a);
+  color: var(--text-color, #fff);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.stats-header-btn:hover {
+  border-color: var(--accent-color, #4ecdc4);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+.chart-icon {
+  color: var(--text-color, #fff);
+  transition: color 0.2s;
+}
+
+.stats-header-btn:hover .chart-icon {
+  color: var(--accent-color, #4ecdc4);
 }
 
 .settings-btn {
@@ -1087,7 +1189,7 @@ function handleEyePositionUpdate(position) {
 
 .settings-btn:hover {
   border-color: var(--accent-color, #4ecdc4);
-  background: rgba(78, 205, 196, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 .gear-icon {
@@ -1121,6 +1223,28 @@ function handleEyePositionUpdate(position) {
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  position: relative;
+}
+
+.typing-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.side-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  flex-shrink: 0;
 }
 
 

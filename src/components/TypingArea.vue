@@ -5,32 +5,35 @@
         <span
           v-for="(word, wordIndex) in words"
           :key="wordIndex"
-          class="word"
+          :class="word.isSpace ? 'word-space' : 'word'"
         >
           <span
             v-for="(char, charIndex) in word.text"
             :key="charIndex"
             class="char"
             :class="{
-              'char-space': char === ' ',
+              'char-space': char === ' ' || char === '\n',
+              'char-newline': char === '\n',
               correct: word.startIndex + charIndex < userInput.length && userInput[word.startIndex + charIndex] === char,
               incorrect: word.startIndex + charIndex < userInput.length && userInput[word.startIndex + charIndex] !== char,
               current: word.startIndex + charIndex === userInput.length,
+              'error-pulse': word.startIndex + charIndex === userInput.length && hasErrorFlash,
               upcoming: word.startIndex + charIndex > userInput.length
             }"
-          >
-            {{ char === ' ' ? ' ' : char }}
-          </span>
+          ><template v-if="char === '\n'">↵</template><template v-else>{{ char === ' ' ? ' ' : char }}</template></span>
         </span>
       </div>
       
       <div class="input-with-slider">
-        <input
+        <textarea
           ref="inputRef"
-          v-model="userInput"
+          :value="userInput"
           @input="handleInput"
           @keydown="handleKeyDown"
           @keyup="handleKeyUp"
+          @click="forceCursorToEnd"
+          @focus="forceCursorToEnd"
+          @select="forceCursorToEnd"
           class="typing-input"
           :disabled="isPaused"
           autocomplete="off"
@@ -38,7 +41,7 @@
           autocapitalize="off"
           spellcheck="false"
           tabindex="0"
-        />
+        ></textarea>
       </div>
       
       <EyeTrackingSlider
@@ -53,11 +56,6 @@
         <div class="loading-spinner"></div>
         <div class="loading-text">{{ t.loadingText || 'Loading text...' }}</div>
       </div>
-    </div>
-    
-    <div v-if="showWarning" class="warning-indicator">
-      <span class="warning-icon">⚠️</span>
-      <span class="warning-text">{{ warningMessage }}</span>
     </div>
     
     <div class="progress-bar" ref="progressBarRef">
@@ -77,6 +75,10 @@
       >
         {{ sourceTitle || 'Source' }}
       </a>
+    </div>
+    <div v-if="showWarning" class="warning-indicator">
+      <span class="warning-icon">⚠️</span>
+      <span class="warning-text">{{ warningMessage }}</span>
     </div>
   </div>
 </template>
@@ -152,6 +154,7 @@ const textDisplayRef = ref(null);
 const progressBarRef = ref(null);
 const activeKey = ref('');
 const errorKey = ref('');
+const hasErrorFlash = ref(false);
 const totalMistakes = ref(0);
 const totalCharsTyped = ref(0);
 const isShiftPressed = ref(false);
@@ -164,22 +167,27 @@ const keyboardLayoutMap = ref(null);
 let scrollTimeout = null;
 let lastScrollTime = 0;
 let isScrolling = false;
-const SCROLL_THROTTLE_MS = 150;
+  const SCROLL_THROTTLE_MS = 50;
 
 const words = computed(() => {
   if (!props.targetText) return [];
   const result = [];
-  let startIndex = 0;
   const text = props.targetText;
   
-  let currentWord = { text: '', startIndex: 0 };
+  let currentWord = { text: '', startIndex: 0, isSpace: false };
   for (let i = 0; i < text.length; i++) {
-    if (text[i] === ' ' || text[i] === '\n') {
+    if (text[i] === ' ') {
       if (currentWord.text.length > 0) {
         result.push(currentWord);
       }
-      result.push({ text: text[i], startIndex: i });
-      currentWord = { text: '', startIndex: i + 1 };
+      result.push({ text: text[i], startIndex: i, isSpace: true });
+      currentWord = { text: '', startIndex: i + 1, isSpace: false };
+    } else if (text[i] === '\n') {
+      if (currentWord.text.length > 0) {
+        result.push(currentWord);
+      }
+      result.push({ text: text[i], startIndex: i, isSpace: true });
+      currentWord = { text: '', startIndex: i + 1, isSpace: false };
     } else {
       if (currentWord.text.length === 0) {
         currentWord.startIndex = i;
@@ -236,8 +244,17 @@ watch(() => props.targetText, (newText) => {
   
   nextTick(() => {
     inputRef.value?.focus();
+    scrollToCurrent();
   });
 }, { flush: 'post' });
+
+watch(() => userInput.value.length, () => {
+  if (props.isActive && !props.isPaused) {
+    nextTick(() => {
+      scrollToCurrent();
+    });
+  }
+});
 
 let visibilityChangeHandler = null;
 let resizeHandler = null;
@@ -383,17 +400,70 @@ function handleInput(event) {
     return;
   }
   
-  if (event.target.value.length > props.targetText.length) {
-    userInput.value = event.target.value.slice(0, props.targetText.length);
+  const newValue = event.target.value;
+  let isValid = true;
+  
+  // Do not allow deleting correct characters
+  if (newValue.length < userInput.value.length) {
+    isValid = false;
+  } else {
+    // Ensure the new input perfectly matches the target text prefix
+    for (let i = 0; i < newValue.length; i++) {
+      if (i >= props.targetText.length || newValue[i] !== props.targetText[i]) {
+        isValid = false;
+        break;
+      }
+    }
+  }
+  
+  if (!isValid) {
+    // Restore the input value to the last known good userInput
+    event.target.value = userInput.value;
+    
+    // If length increased, it means they typed a wrong character that bypassed keydown
+    if (newValue.length > userInput.value.length) {
+      totalCharsTyped.value++;
+      totalMistakes.value++;
+      currentCombo.value = 0;
+      emit('update:combo', { current: 0, max: maxCombo.value });
+      emit('update:mistakes', { totalMistakes: totalMistakes.value, totalCharsTyped: totalCharsTyped.value });
+      
+      const wrongChar = newValue[userInput.value.length];
+      if (wrongChar) {
+        errorKey.value = wrongChar.toLowerCase();
+        hasErrorFlash.value = true;
+        emit('update:errorKey', errorKey.value);
+        setTimeout(() => {
+          errorKey.value = '';
+          hasErrorFlash.value = false;
+          emit('update:errorKey', '');
+        }, 300);
+      }
+    }
+    
+    forceCursorToEnd();
     return;
   }
   
-  const previousLength = userInput.value.length;
-  userInput.value = event.target.value;
-  const newLength = userInput.value.length;
+  let finalValue = newValue;
   
+  // Auto-fill indentation if the last typed character was a newline
+  if (finalValue.length > userInput.value.length && finalValue[finalValue.length - 1] === '\n') {
+    let nextIndex = finalValue.length;
+    while (nextIndex < props.targetText.length && props.targetText[nextIndex] === ' ') {
+      finalValue += ' ';
+      nextIndex++;
+    }
+  }
+
+  userInput.value = finalValue;
   
-  
+  if (event.target.value !== finalValue) {
+    event.target.value = finalValue;
+    nextTick(() => {
+      forceCursorToEnd();
+    });
+  }
   
   emit('input', userInput.value);
   
@@ -408,9 +478,8 @@ function handleInput(event) {
     emit('update:expectedKey', expectedChar);
   }
   
-  
   const now = Date.now();
-  if (now - lastScrollTime > SCROLL_THROTTLE_MS && !isScrolling) {
+  if (now - lastScrollTime > SCROLL_THROTTLE_MS) {
     lastScrollTime = now;
     if (scrollTimeout) {
       clearTimeout(scrollTimeout);
@@ -419,13 +488,20 @@ function handleInput(event) {
       requestAnimationFrame(() => {
         scrollToCurrent();
       });
-    }, 50);
+    }, 10);
   }
 }
 
 function checkCapsLock(event) {
   if (event.getModifierState) {
     capsLockOn.value = event.getModifierState('CapsLock');
+  }
+}
+
+function forceCursorToEnd() {
+  if (inputRef.value) {
+    const len = inputRef.value.value.length;
+    inputRef.value.setSelectionRange(len, len);
   }
 }
 
@@ -604,6 +680,11 @@ function handleKeyDown(event) {
     return;
   }
   
+  if (event.key === 'Backspace' || event.key.startsWith('Arrow')) {
+    event.preventDefault();
+    return;
+  }
+  
   checkCapsLock(event);
   
   if (event.key === 'Shift' || event.key === 'ShiftLeft' || event.key === 'ShiftRight') {
@@ -615,13 +696,17 @@ function handleKeyDown(event) {
   const key = event.key.toLowerCase();
   activeKey.value = key;
   
-  if (key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+  let pressedChar = event.key;
+  if (pressedChar === 'Enter') {
+    pressedChar = '\n';
+  }
+  
+  if (pressedChar.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
     totalCharsTyped.value++;
     
     const currentIndex = userInput.value.length;
     if (currentIndex >= 0 && currentIndex < props.targetText.length) {
       const expectedChar = props.targetText[currentIndex];
-      const pressedChar = event.key;
       
       
       
@@ -640,13 +725,16 @@ function handleKeyDown(event) {
       }
       
       if (pressedChar !== expectedChar) {
+        event.preventDefault();
         totalMistakes.value++;
         currentCombo.value = 0; 
         emit('update:combo', { current: 0, max: maxCombo.value });
         errorKey.value = pressedChar.toLowerCase();
+        hasErrorFlash.value = true;
         emit('update:errorKey', errorKey.value);
         setTimeout(() => {
           errorKey.value = '';
+          hasErrorFlash.value = false;
           emit('update:errorKey', '');
         }, 300);
       } else {
@@ -688,7 +776,7 @@ function handleKeyUp(event) {
 }
 
 function scrollToCurrent() {
-  if (!textDisplayRef.value || isScrolling) return;
+  if (!textDisplayRef.value) return;
   
   const currentChar = textDisplayRef.value.querySelector('.char.current');
   if (!currentChar) return;
@@ -697,42 +785,34 @@ function scrollToCurrent() {
   const containerRect = container.getBoundingClientRect();
   const charRect = currentChar.getBoundingClientRect();
   
+  const containerScrollTop = container.scrollTop;
+  const containerHeight = container.clientHeight;
   
-  const margin = 80; 
-  const isVisible = 
-    charRect.top >= containerRect.top - margin &&
-    charRect.bottom <= containerRect.bottom + margin;
+  const charRelativeTop = charRect.top - containerRect.top + containerScrollTop;
+  const charHeight = charRect.height || 30;
   
+  if (isScrolling) return;
   
-  if (!isVisible) {
-    isScrolling = true;
-    
-    
-    const isActivelyTyping = props.isActive && !props.isPaused;
-    const scrollBehavior = isActivelyTyping ? 'auto' : 'smooth';
-    
-    
-    const charOffsetTop = currentChar.offsetTop;
-    const containerHeight = container.clientHeight;
-    const charHeight = charRect.height;
-    const targetScrollTop = charOffsetTop - (containerHeight / 2) + (charHeight / 2);
-    
-    container.scrollTo({
-      top: Math.max(0, targetScrollTop),
-      behavior: scrollBehavior
+  isScrolling = true;
+  
+  const isActivelyTyping = props.isActive && !props.isPaused;
+  const scrollBehavior = isActivelyTyping ? 'auto' : 'smooth';
+  
+  const targetScrollTop = charRelativeTop - (containerHeight / 2) + (charHeight / 2);
+  
+  container.scrollTo({
+    top: Math.max(0, Math.min(targetScrollTop, container.scrollHeight - containerHeight)),
+    behavior: scrollBehavior
+  });
+  
+  if (scrollBehavior === 'smooth') {
+    setTimeout(() => {
+      isScrolling = false;
+    }, 500);
+  } else {
+    requestAnimationFrame(() => {
+      isScrolling = false;
     });
-    
-    
-    if (scrollBehavior === 'smooth') {
-      setTimeout(() => {
-        isScrolling = false;
-      }, 500);
-    } else {
-      
-      requestAnimationFrame(() => {
-        isScrolling = false;
-      });
-    }
   }
 }
 
@@ -750,6 +830,7 @@ defineExpose({
   reset: () => {
     userInput.value = '';
     errorKey.value = '';
+    hasErrorFlash.value = false;
     activeKey.value = '';
     totalMistakes.value = 0;
     totalCharsTyped.value = 0;
@@ -812,7 +893,7 @@ defineExpose({
 .loading-spinner {
   width: 48px;
   height: 48px;
-  border: 4px solid rgba(78, 205, 196, 0.2);
+  border: 4px solid rgba(var(--accent-rgb), 0.2);
   border-top-color: var(--accent-color, #4ecdc4);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -835,69 +916,118 @@ defineExpose({
   border: 2px solid var(--text-border, #333);
   border-radius: 8px;
   padding: 1.5rem;
-  min-height: 180px;
-  max-height: 220px;
-  font-size: 1.25rem;
-  line-height: 1.8;
-  font-family: 'Courier New', monospace;
+  padding-right: 4rem;
+  min-height: 200px;
+  max-height: 260px;
+  font-size: 1.5rem;
+  line-height: 0.95;
+  font-family: 'Roboto Mono', 'Consolas', monospace;
   overflow-y: auto;
   overflow-x: hidden;
-  white-space: normal;
+  white-space: pre-wrap;
   word-break: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
   text-align: left;
   display: block;
 }
 
 .word {
   display: inline-block;
-  white-space: nowrap;
+  white-space: pre;
 }
 
 .word-space {
   display: inline;
-  white-space: normal;
+  white-space: pre-wrap;
 }
 
 .char {
-  display: inline;
+  display: inline-block;
   box-sizing: border-box;
   position: relative;
+  font-size: 1.5rem;
+  height: 0.95em;
+  line-height: 0.95em;
+  vertical-align: top;
+  text-align: center;
+  overflow: visible;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .char.char-space {
-  display: inline-block;
   min-width: 0.5em;
-  position: relative;
+  width: 0.5em;
+  white-space: pre;
 }
 
-.char.char-space::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-80%);
-  height: 1em;
-  background: rgba(255, 255, 255, 0.02);
+.char.char-space.correct,
+.char.char-space.current,
+.char.char-space.incorrect {
+  background: transparent;
+}
+
+.char.char-newline {
+  display: inline;
+  white-space: pre-wrap;
+  color: var(--typing-upcoming, #666);
+  opacity: 0.3;
+  font-size: 1.2rem;
+}
+
+.char.char-newline::after {
+  content: '\A';
+  white-space: pre;
+}
+
+.char.char-newline.current {
+  color: var(--accent-color, #4ecdc4);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: -3px 0 0 0 var(--accent-color, #4ecdc4);
+  animation: blink 1s infinite;
   border-radius: 2px;
 }
 
-.char.char-space.correct::after {
-  background: rgba(78, 205, 196, 0.05);
+.char.char-newline.correct {
+  color: var(--typing-correct, #4ecdc4);
+  opacity: 0.5;
+  background: transparent;
 }
 
-.char.char-space.incorrect::after {
-  background: rgba(255, 107, 107, 0.05);
+.char.char-newline.incorrect {
+  color: #ff6b6b;
+  opacity: 0.8;
+  background: transparent;
 }
 
-.char.char-space.current::after {
-  background: rgba(78, 205, 196, 0.2);
+:root.light-mode .char.char-newline.current {
+  color: #2563eb;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: -3px 0 0 0 #2563eb;
+}
+
+:root.light-mode .char.char-newline.correct {
+  color: #2563eb;
+  background: transparent;
+}
+
+:root.light-mode .char.char-newline.incorrect {
+  color: #dc2626;
+  background: transparent;
+}
+
+.char.char-newline::after {
+  content: '\A';
+  white-space: pre;
 }
 
 .char.correct {
-  color: #4ecdc4;
-  background: rgba(78, 205, 196, 0.1);
+  color: var(--typing-correct, #4ecdc4);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+:root.light-mode .char.correct {
+  background: rgba(37, 99, 235, 0.1);
 }
 
 .char.incorrect {
@@ -906,18 +1036,38 @@ defineExpose({
   text-decoration: underline;
 }
 
+:root.light-mode .char.incorrect {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.15);
+}
+
 .char.current {
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: -3px 0 0 0 #4ecdc4;
+  box-shadow: -3px 0 0 0 var(--accent-color, #4ecdc4);
   animation: blink 1s infinite;
 }
 
+.char.current.error-pulse {
+  background: rgba(255, 107, 107, 0.3);
+  box-shadow: -3px 0 0 0 #ff6b6b;
+  animation: none;
+}
+
+:root.light-mode .char.current {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .char.current.error-pulse {
+  background: rgba(220, 38, 38, 0.2);
+  box-shadow: -3px 0 0 0 #dc2626;
+}
+
 .char.upcoming {
-  color: #666;
+  color: var(--typing-upcoming, #666);
 }
 
 @keyframes blink {
-  0%, 50% { box-shadow: -3px 0 0 0 #4ecdc4; }
+  0%, 50% { box-shadow: -3px 0 0 0 var(--accent-color, #4ecdc4); }
   51%, 100% { box-shadow: -3px 0 0 0 transparent; }
 }
 
@@ -940,26 +1090,25 @@ defineExpose({
   height: 100%;
   padding: 1.5rem;
   padding-right: 4rem;
-  font-size: 1.25rem;
-  line-height: 1.8;
+  font-size: 1.5rem;
+  line-height: 0.95;
   border: none;
   border-radius: 8px;
   background: transparent;
   color: transparent;
   caret-color: transparent;
-  font-family: 'Courier New', monospace;
+  font-family: 'Roboto Mono', 'Consolas', monospace;
   outline: none;
   z-index: 10;
   resize: none;
   overflow: hidden;
   white-space: pre-wrap;
   word-break: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 
-
 .typing-input:focus {
-  border-color: #4ecdc4;
+  border-color: var(--accent-color, #4ecdc4);
 }
 
 .progress-bar {
@@ -1016,33 +1165,31 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 193, 7, 0.15);
-  border: 1px solid rgba(255, 193, 7, 0.5);
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
-  color: #ffc107;
-  animation: warningPulse 2s ease-in-out infinite;
+  padding: 0.6rem 1rem;
+  margin-top: 0.75rem;
+  background: #b45309;
+  border: 2px solid #92400a;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  color: #fff;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+:root.light-mode .warning-indicator {
+  background: #d97706;
+  border-color: #b45309;
+  color: #fff;
 }
 
 .warning-icon {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 .warning-text {
-  font-weight: 500;
-}
-
-@keyframes warningPulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
-  }
-  50% {
-    opacity: 0.9;
-    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0);
-  }
+  font-weight: 600;
 }
 
 .progress-bar {
@@ -1068,8 +1215,8 @@ defineExpose({
   border-radius: 3px;
   position: relative;
   box-shadow: 
-    0 0 8px rgba(78, 205, 196, 0.6),
-    0 0 16px rgba(78, 205, 196, 0.4),
+    0 0 8px rgba(var(--accent-rgb), 0.5),
+    0 0 16px rgba(var(--accent-rgb), 0.3),
     inset 0 0 8px rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
@@ -1101,11 +1248,22 @@ defineExpose({
 
 @media (max-width: 768px) {
   .text-display {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     padding: 1rem;
-    min-height: 120px;
-    max-height: 150px;
-    line-height: 1.6;
+    min-height: 140px;
+    max-height: 180px;
+    line-height: 0.95;
+  }
+
+  .char {
+    font-size: 1.25rem;
+    height: 0.95em;
+    line-height: 0.95em;
+  }
+
+  .typing-input {
+    font-size: 1.25rem;
+    line-height: 0.95;
   }
   
   .timer {

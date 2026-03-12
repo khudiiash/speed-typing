@@ -26,7 +26,7 @@ const svgRef = ref(null);
 
 const fingerColors = {
   'pinky-l': '#ff6b6b',
-  'ring-l': '#4ecdc4',
+  'ring-l': 'var(--accent-color)',
   'middle-l': '#45b7d1',
   'index-l': '#96ceb4',
   'thumb': '#ffeaa7',

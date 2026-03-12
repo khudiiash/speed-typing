@@ -63,7 +63,7 @@ const effectiveLayout = computed(() => {
   if (props.expectedKey && props.expectedKey.length === 1) {
     const char = props.expectedKey;
 
-    if (char === ' ' || /[^\wа-яёіїєґ]/.test(char)) {
+    if (char === ' ' || /[^\wа-яёіїєґ<>&|@#$]/.test(char)) {
       return props.language;
     }
     return isUkrainianChar(char) ? 'uk' : 'en';
@@ -84,7 +84,7 @@ const keyboardLayout = computed(() => {
         { key: '3', display: '3', shiftChar: '№', needsShift: false, isModifier: false },
         { key: '4', display: '4', shiftChar: ';', needsShift: false, isModifier: false },
         { key: '5', display: '5', shiftChar: '%', needsShift: false, isModifier: false },
-        { key: '6', display: '6', shiftChar: ':', needsShift: false, isModifier: false },
+        { key: '6', display: '6', shiftChar: '^', needsShift: false, isModifier: false },
         { key: '7', display: '7', shiftChar: '?', needsShift: false, isModifier: false },
         { key: '8', display: '8', shiftChar: '*', needsShift: false, isModifier: false },
         { key: '9', display: '9', shiftChar: '(', needsShift: false, isModifier: false },
@@ -260,7 +260,9 @@ function getKeySizeClass(keyObj) {
 function isKeyActive(keyObj) {
   if (keyObj.key === 'Shift' && props.isShiftPressed) return true;
   const keyLower = keyObj.key.toLowerCase();
-  const activeLower = props.activeKey.toLowerCase();
+  let activeLower = props.activeKey.toLowerCase();
+  
+  if (activeLower === '\n') activeLower = 'enter';
 
   if (getPhysicalKey(props.activeKey, keyObj)) {
     return !props.isShiftPressed;
@@ -286,16 +288,19 @@ function isKeyActive(keyObj) {
 function isKeyError(keyObj) {
   if (!props.errorKey) return false;
   const keyLower = keyObj.key.toLowerCase();
+  
+  let currentErrorLower = errorKeyLower.value;
+  if (currentErrorLower === '\n') currentErrorLower = 'enter';
 
   if (getPhysicalKey(props.errorKey, keyObj)) {
     return true;
   }
 
-  if (errorKeyLower.value === keyLower) {
+  if (currentErrorLower === keyLower) {
     return true;
   }
 
-  if (keyObj.shiftChar && errorKeyLower.value === keyObj.shiftChar.toLowerCase()) {
+  if (keyObj.shiftChar && currentErrorLower === keyObj.shiftChar.toLowerCase()) {
     return true;
   }
 
@@ -306,7 +311,9 @@ function isKeyExpected(keyObj) {
   if (!props.expectedKey) return false;
   const keyLower = keyObj.key.toLowerCase();
   const expectedChar = props.expectedKey;
-  const expectedLower = expectedChar.toLowerCase();
+  let expectedLower = expectedChar.toLowerCase();
+  
+  if (expectedLower === '\n') expectedLower = 'enter';
 
   if (getPhysicalKey(expectedChar, keyObj)) {
     if (expectedChar === ',' && keyObj.key === '.' && keyObj.shiftChar === ',') {
@@ -411,10 +418,10 @@ function isKeyDimmed(keyObj) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: var(--keyboard-bg, #1a1a1a);
   padding: 1rem;
   border-radius: 12px;
-  border: 1px solid rgba(78, 205, 196, 0.2);
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.1));
   position: relative;
   overflow: visible;
 }
@@ -425,13 +432,13 @@ function isKeyDimmed(keyObj) {
 
 @keyframes keyboardErrorBlink {
   0% {
-    border-color: rgba(78, 205, 196, 0.2);
+    border-color: rgba(var(--accent-rgb), 0.2);
   }
   50% {
     border-color: rgba(214, 48, 49, 1);
   }
   100% {
-    border-color: rgba(78, 205, 196, 0.2);
+    border-color: rgba(var(--accent-rgb), 0.2);
   }
 }
 
@@ -451,7 +458,7 @@ function isKeyDimmed(keyObj) {
   border-radius: 6px;
   font-weight: 600;
   font-size: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--keyboard-key-border, rgba(255, 255, 255, 0.1));
   user-select: none;
   position: relative;
   overflow: hidden;
@@ -502,8 +509,8 @@ function isKeyDimmed(keyObj) {
 }
 
 .finger-ring-l {
-  background: linear-gradient(135deg, #4ecdc4 0%, #26a69a 100%);
-  border-color: rgba(78, 205, 196, 0.5);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #26a69a 100%);
+  border-color: rgba(var(--accent-rgb), 0.5);
 }
 
 .finger-middle-l {
@@ -580,8 +587,8 @@ function isKeyDimmed(keyObj) {
 }
 
 .key.active.modifier-key {
-  background: linear-gradient(135deg, #4ecdc4 0%, #26a69a 100%);
-  border-color: rgba(78, 205, 196, 0.8);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #26a69a 100%);
+  border-color: rgba(var(--accent-rgb), 0.8);
 }
 
 .key.error {
@@ -611,7 +618,7 @@ function isKeyDimmed(keyObj) {
 
 .key.expected {
   opacity: 1;
-  border: 2px solid rgba(78, 205, 196, 0.9);
+  border: 2px solid rgba(var(--accent-rgb), 0.9);
 }
 
 .key.dimmed {
